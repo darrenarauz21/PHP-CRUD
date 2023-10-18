@@ -1,0 +1,22 @@
+{
+    "headView":{
+        "button1":"Cerrar Sesión"
+    },
+
+    "loginView":{
+        "title": "Inicio de Sesión",
+        "user":"Usuario",
+        "password":"Contraseña",
+        "button":"Ingresar",
+        "text1":"Bienvenido",
+        "text2":"Iniciar Sesión"
+
+    },
+    "dashboardView":{
+        "title":"Dashboard",
+        "":""
+    },
+    "crudView":{
+        "title":"Crud"
+    }
+}
