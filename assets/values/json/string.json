@@ -1,6 +1,7 @@
 {
     "headView":{
-        "button1":"Cerrar Sesión"
+        "title":"Actividad 5",
+        "btnSession":"Cerrar Sesión"
     },
 
     "loginView":{

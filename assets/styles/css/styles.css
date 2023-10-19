@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+.perfil-text {
+    font-size: 20px; /* Tamaño de fuente más grande */
+    font-weight: bold; /* Texto en negrita */
+    font-family: 'Poppins', sans-serif; /* Cambia 'Nombre de la fuente' por la fuente que desees usar */
+  }
+  

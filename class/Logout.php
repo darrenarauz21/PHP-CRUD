@@ -10,6 +10,6 @@ if (session_id() != '') {
 
 
 // Redirige al usuario a la página de inicio de sesión 
-header("Location: ../login.php");
+header("Location: ../index.php");
 exit();
 ?>

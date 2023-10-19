@@ -14,5 +14,5 @@ CREATE TABLE IF NOT EXISTS user (
 );
 
 INSERT INTO user (usuario, contrasena, nombre, apellido)
-VALUES ('dev01', 'dev', 'Developer', '777')
+VALUES ('darren01', 'contrasena123', 'Darren', 'Araúz')
 ON DUPLICATE KEY UPDATE usuario = usuario; 
