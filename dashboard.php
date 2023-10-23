@@ -21,7 +21,6 @@ $usuario = $_SESSION['usuario'];
     <link rel="stylesheet" href="assets/styles/fontawesome/css/all.min.css">
     <script src="assets/values/js/stringControl.js"></script>
 </head>
-<?php include 'head.php'; ?>
 <section style="background-color: #eee;"> 
     <div class="container py-5">
         <div class="row">
@@ -51,6 +50,7 @@ $usuario = $_SESSION['usuario'];
             document.getElementById("txt-title").textContent = stringControl.getString("headView", "title");
             document.getElementById("btnSession").textContent = stringControl.getString("headView", "btnSession");
             document.getElementById("txt-class").textContent = stringControl.getString("dashboardView", "title");
+            document.getElementById("btn-crud").textContent = stringControl.getString("headView", "btnCrud");
             
             
             // Mostrar el mensaje de error, si existe

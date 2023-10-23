@@ -1,7 +1,8 @@
 {
     "headView":{
         "title":"Actividad 5",
-        "btnSession":"Cerrar Sesión"
+        "btnSession":"Cerrar Sesión",
+        "btnCrud":"CRUD"
     },
 
     "loginView":{
@@ -15,7 +16,7 @@
     },
     "dashboardView":{
         "title":"Dashboard",
-        "":""
+        "text-1":""
     },
     "crudView":{
         "title":"Crud"

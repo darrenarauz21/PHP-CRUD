@@ -5,7 +5,7 @@
   <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4 d-flex align-items-center justify-content-between">
       <span class="perfil-text class-name-style" id="txt-class"></span>
         <div class="ms-auto">
-          <a href="crud.php" class="btn btn-secondary btn-sm" type="button" id="btn-crud"><i class=""></i></a>
+          <a href="crud.php" class="btn btn-secondary btn-sm" type="button" id="btn-crud"><i class="fas fa-plus"></i></a>
           <a href="class/logout.php" class="btn btn-secondary btn-sm" type="button" id="btnSession"><i class="fas fa-sign-out-alt"></i></a>
       </div>
   </nav>
@@ -21,6 +21,7 @@ var className = "";
 switch (currentPage) {
 case "crud":
   className = "Crud";
+  document.getElementById("btn-crud").style.display = "none";
   break;
 
 case "dashboard":
@@ -37,3 +38,5 @@ default:
 // Coloca el nombre de la clase en el elemento HTML
 //document.getElementById("class-name").textContent = className;
 </script>
+
+

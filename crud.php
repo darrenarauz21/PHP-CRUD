@@ -1,3 +1,50 @@
+<?php
+require 'class/Database.php';
+require 'class/Customer.php';
+
+$db = new Database();
+$customer = new Customer($db->getConnection());
+
+$customers = $customer->getAllCustomers();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['addCustomer'])) {
+        // Procesar el formulario de agregar
+        $customerName = $_POST['customerName'];
+        $contactLastName = $_POST['contactLastName'];
+        $contactFirstName = $_POST['contactFirstName'];
+        $phone = $_POST['phone'];
+        $addressLine1 = $_POST['addressLine1'];
+        $addressLine2 = $_POST['addressLine2'];
+        $city = $_POST['city'];
+        $state = $_POST['state'];
+        $postalCode = $_POST['postalCode'];
+        $country = $_POST['country'];
+        $salesRepEmployeeNumber = $_POST['salesRepEmployeeNumber'];
+        $creditLimit = $_POST['creditLimit'];
+
+        $customer->addCustomer($customerName, $contactLastName, $contactFirstName, $phone, $addressLine1, $addressLine2, $city, $state, $postalCode, $country, $salesRepEmployeeNumber, $creditLimit);
+    } elseif (isset($_POST['editCustomer'])) {
+        // Procesar el formulario de edición
+        $customerNumber = $_POST['editCustomerID'];
+        $customerName = $_POST['editCustomerName'];
+        $contactLastName = $_POST['editContactLastName'];
+        $contactFirstName = $_POST['editContactFirstName'];
+        $phone = $_POST['editPhone'];
+        $addressLine1 = $_POST['editAddressLine1'];
+        $addressLine2 = $_POST['editAddressLine2'];
+        $city = $_POST['editCity'];
+        $state = $_POST['editState'];
+        $postalCode = $_POST['editPostalCode'];
+        $country = $_POST['editCountry'];
+        $salesRepEmployeeNumber = $_POST['editSalesRepEmployeeNumber'];
+        $creditLimit = $_POST['editCreditLimit'];
+
+        $customer->updateCustomer($customerNumber, $customerName, $contactLastName, $contactFirstName, $phone, $addressLine1, $addressLine2, $city, $state, $postalCode, $country, $salesRepEmployeeNumber, $creditLimit);
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,6 +56,7 @@
 </head>
 <body>
     <div class="container mt-4">
+    <?php include 'assets/views/head.html'?>
         <h1>CRUD de Clientes</h1>
         <button class="btn btn-primary" data-toggle="modal" data-target="#addCustomerModal">
             <i class="fas fa-plus"></i> Agregar Cliente
@@ -37,8 +85,8 @@
     <tbody>
         <?php
         // Incluye tu archivo de configuración de base de datos y la clase Customer
-        require 'class/Database.php';
-        require 'class/Customer.php';
+ //       require 'class/Database.php';
+   //     require 'class/Customer.php';
 
         // Crea una instancia de la clase Database y Customer
         $db = new Database();
@@ -86,16 +134,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- Formulario para agregar cliente -->
-                    <form action="procesar_formulario_agregar.php" method="post">
-                        <!-- Campos del formulario -->
-                        <!-- Implementa los campos necesarios para agregar un cliente -->
-                        <div class="form-group">
-                            <label for="customerName">Nombre del Cliente</label>
-                            <input type="text" class="form-control" id="customerName" name="customerName">
-                        </div>
-                        <!-- Otros campos aquí -->
-                        <button type="submit" class="btn btn-primary">Agregar</button>
-                    </form>
+                    <?php include_once 'assets/views/addForm.html'; ?>
                 </div>
             </div>
         </div>
@@ -105,8 +144,7 @@
     <div class="modal fade" id="editCustomerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <!-- Contenido del modal para editar cliente -->
-                <!-- Implementa el formulario de edición aquí -->
+            <?php include_once 'assets/views/editForm.html'; ?>
             </div>
         </div>
     </div>
