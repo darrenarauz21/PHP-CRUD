@@ -1,8 +1,39 @@
-    <div class="col">
-    <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4 d-flex align-items-center">
-        <span class="perfil-text" id="txt-title"></span> <!-- Texto a la izquierda con estilo -->
+
+
+<title id="txt-title"></title>
+<div class="col">
+  <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4 d-flex align-items-center justify-content-between">
+      <span class="perfil-text class-name-style" id="txt-class"></span>
         <div class="ms-auto">
-          <a href="class/Logout.php" id="btnSession" class="btn btn-secondary btn-sm" type="button"><i class="fas fa-sign-out-alt"></i></a>
-        </div>
-    </nav>
+          <a href="crud.php" class="btn btn-secondary btn-sm" type="button" id="btn-crud"><i class=""></i></a>
+          <a href="class/logout.php" class="btn btn-secondary btn-sm" type="button" id="btnSession"><i class="fas fa-sign-out-alt"></i></a>
+      </div>
+  </nav>
 </div>
+
+<!-- Script JavaScript para establecer el nombre de la clase y ocultar botones -->
+<script>
+// Obtiene el nombre de la clase desde la URL actual
+var currentPage = window.location.pathname.split('/').pop().split('.')[0];
+
+var className = "";
+// Utiliza un switch para definir manualmente el nombre de la clase
+switch (currentPage) {
+case "crud":
+  className = "Crud";
+  break;
+
+case "dashboard":
+  className = "Dashboard";
+
+  break;                      
+default:
+  className = "";
+  // Ocultar todos los botones si no hay coincidencia
+  document.getElementById("btnSession").style.display = "none";
+  document.getElementById("btn-crud").style.display = "none";
+}
+
+// Coloca el nombre de la clase en el elemento HTML
+//document.getElementById("class-name").textContent = className;
+</script>

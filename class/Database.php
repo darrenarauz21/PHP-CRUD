@@ -1,5 +1,5 @@
-<?php 
-class Database{
+<?php
+class Database {
     private $host = "localhost";
     private $username = "root";
     private $password = "";
@@ -7,8 +7,13 @@ class Database{
     private $connection;
 
     public function __construct() {
-        $this->connection = new PDO("mysql:host={$this->host};dbname={$this->database}", $this->username, $this->password);
-        $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        try {
+            $this->connection = new PDO("mysql:host={$this->host};dbname={$this->database}", $this->username, $this->password);
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            // Handle exceptions here (e.g., error logging)
+            echo "Error: " . $e->getMessage();
+        }
     }
 
     public function getConnection() {
