@@ -5,6 +5,7 @@
   <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4 d-flex align-items-center justify-content-between">
       <span class="perfil-text class-name-style" id="txt-class"></span>
         <div class="ms-auto">
+          <a href="dashboard.php" class="btn btn-secondary btn-sm" type="button" id="btn-board"><i class="fas fa-home"></i></a>
           <a href="crud.php" class="btn btn-secondary btn-sm" type="button" id="btn-crud"><i class="fas fa-plus"></i></a>
           <a href="class/logout.php" class="btn btn-secondary btn-sm" type="button" id="btnSession"><i class="fas fa-sign-out-alt"></i></a>
       </div>
@@ -26,11 +27,13 @@ case "crud":
 
 case "dashboard":
   className = "Dashboard";
-
+  document.getElementById("btn-board").style.display = "none";
   break;                      
 default:
   className = "";
   // Ocultar todos los botones si no hay coincidencia
+  
+  document.getElementById("btn-board").style.display = "none";
   document.getElementById("btnSession").style.display = "none";
   document.getElementById("btn-crud").style.display = "none";
 }

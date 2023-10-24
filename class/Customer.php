@@ -18,12 +18,22 @@ class Customer {
         }
     }
     
+    
     // Create (Agregar un cliente)
     public function addCustomer($customerName, $contactLastName, $contactFirstName, $phone, $addressLine1, $addressLine2, $city, $state, $postalCode, $country, $salesRepEmployeeNumber, $creditLimit) {
         try {
-            $query = "INSERT INTO customers (customerName, contactLastName, contactFirstName, phone, addressLine1, addressLine2, city, state, postalCode, country, salesRepEmployeeNumber, creditLimit) VALUES (:customerName, :contactLastName, :contactFirstName, :phone, :addressLine1, :addressLine2, :city, :state, :postalCode, :country, :salesRepEmployeeNumber, :creditLimit)";
+            // Obtener el número de cliente más alto existente en la base de datos
+            $query = "SELECT MAX(customerNumber) as maxCustomerNumber FROM customers";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+            // Generar un nuevo número de cliente incrementando el valor máximo en uno
+            $customerNumber = intval($result['maxCustomerNumber']) + 1;
+            $query = "INSERT INTO customers (customerNumber, customerName, contactLastName, contactFirstName, phone, addressLine1, addressLine2, city, state, postalCode, country, salesRepEmployeeNumber, creditLimit) VALUES (:customerNumber, :customerName, :contactLastName, :contactFirstName, :phone, :addressLine1, :addressLine2, :city, :state, :postalCode, :country, :salesRepEmployeeNumber, :creditLimit)";
             
             $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':customerNumber', $customerNumber);
             $stmt->bindParam(':customerName', $customerName);
             $stmt->bindParam(':contactLastName', $contactLastName);
             $stmt->bindParam(':contactFirstName', $contactFirstName);
