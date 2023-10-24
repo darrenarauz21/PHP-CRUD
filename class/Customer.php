@@ -6,6 +6,42 @@ class Customer {
         $this->db = $db;
     }
 
+        // Consulta que obtiene los cinco clientes con más órdenes realizadas
+        public function getTopCustomersWithMostOrders() {
+            try {
+                $query = "SELECT c.customerNumber, c.customerName, COUNT(o.orderNumber) AS orderCount
+                          FROM customers c
+                          LEFT JOIN orders o ON c.customerNumber = o.customerNumber
+                          GROUP BY c.customerNumber
+                          ORDER BY orderCount DESC
+                          LIMIT 5";
+                $stmt = $this->db->prepare($query);
+                $stmt->execute();
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                // Manejar excepciones aquí (por ejemplo, registro de errores)
+                return false;
+            }
+        }
+    
+        // Consulta que obtiene los cinco clientes con menos pagos realizados
+        public function getTopCustomersWithLeastPayments() {
+            try {
+                $query = "SELECT c.customerNumber, c.customerName, SUM(p.amount) AS totalPayments
+                          FROM customers c
+                          LEFT JOIN payments p ON c.customerNumber = p.customerNumber
+                          GROUP BY c.customerNumber
+                          ORDER BY totalPayments ASC
+                          LIMIT 5";
+                $stmt = $this->db->prepare($query);
+                $stmt->execute();
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                // Manejar excepciones aquí (por ejemplo, registro de errores)
+                return false;
+            }
+        }
+
     // Mostrar (Mostrar clientes)
     public function getAllCustomers() {
         try {

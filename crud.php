@@ -13,6 +13,29 @@
     <?php include 'assets/views/head.html'?>
         <h2>CRUD de Clientes</h2>
         <button class="btn btn-success" data-toggle="modal" data-target="#addCustomerModal">Agregar Cliente</button>
+        <!-- Agregar botones para las consultas -->
+        <button class="btn btn-primary" id="topCustomersMostOrdersButton">Clientes con más ordenes</button>
+        <button class="btn btn-primary" id="topCustomersLeastPaymentsButton">Clientes con menos pagos</button>
+
+        <!-- Modal para mostrar los resultados -->
+        <div class="modal fade" id="topCustomersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Resultados de la Consulta</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="topCustomersResults"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <br><br>
         <table class="table">
             <thead>
@@ -275,6 +298,32 @@
                     }
                 });
             });*/
+            // Consulta para obtener los 5 clientes con más órdenes
+            $("#topCustomersMostOrdersButton").on("click", function() {
+                $.ajax({
+                    url: "class/ajax.php",
+                    type: "POST",
+                    data: { action: "getTopCustomersWithMostOrders" },
+                    success: function(response) {
+                        $("#topCustomersResults").html(response);
+                        $("#topCustomersModal").modal("show");
+                    }
+                });
+            });
+
+            // Consulta para obtener los 5 clientes con menos pagos
+            $("#topCustomersLeastPaymentsButton").on("click", function() {
+                $.ajax({
+                    url: "class/ajax.php",
+                    type: "POST",
+                    data: { action: "getTopCustomersWithLeastPayments" },
+                    success: function(response) {
+                        $("#topCustomersResults").html(response);
+                        $("#topCustomersModal").modal("show");
+                    }
+                });
+            });
+
 
             $("#editCustomerButton").on("click", function() {
             var formData = {

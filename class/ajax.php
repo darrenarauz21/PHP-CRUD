@@ -74,6 +74,12 @@ if (isset($_POST['action'])) {
         $customerNumber = $_POST['customerNumber'];
         $customerData = $customer->getCustomer($customerNumber);
         echo json_encode($customerData);
+    } elseif ($_POST['action'] == 'getTopCustomersWithMostOrders') {
+        $topCustomers = $customer->getTopCustomersWithMostOrders();
+        echo json_encode($topCustomers);
+    } elseif ($_POST['action'] == 'getTopCustomersWithLeastPayments') {
+        $topCustomers = $customer->getTopCustomersWithLeastPayments();
+        echo json_encode($topCustomers);
     }
 }
 ?>
